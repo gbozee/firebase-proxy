@@ -1,0 +1,4 @@
+https://github.com/gbozee/google-secrets/archive/master.zip
+bottle==0.12.16
+werkzeug==0.14.1
+firebase-admin==2.16.0

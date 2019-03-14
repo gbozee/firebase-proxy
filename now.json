@@ -1,0 +1,20 @@
+{
+  "name": "firebase-auth",
+  "alias": "firebase-auth",
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@ardent-labs/now-python-wsgi",
+      "config": {
+        "maxLambdaSize": "20mb"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/.*",
+      "dest": "app.py"
+    }
+  ]
+}
