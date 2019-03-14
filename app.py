@@ -29,6 +29,19 @@ def get_or_create_user_from_firebase(result, password):
     return user
 
 
+@application.hook("after_request")
+def enable_cors():
+    """
+    You need to add some headers to each request.
+    Don't use the wildcard '*' for Access-Control-Allow-Origin in production.
+    """
+    bottle.response.headers["Access-Control-Allow-Origin"] = "*"
+    bottle.response.headers["Access-Control-Allow-Methods"] = "PUT, GET, POST, DELETE, OPTIONS"
+    bottle.response.headers[
+        "Access-Control-Allow-Headers"
+    ] = "Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token"
+
+
 @application.error(400)
 def error400(error):
     bottle.response.set_header("Content-Type", "application/json")
@@ -76,5 +89,5 @@ def index():
     return {"hello": "world"}
 
 
-# if __name__ == "__main__":
-#     bottle.run(application, port=8000, debug=True, reloader=True)
+if __name__ == "__main__":
+    bottle.run(application, port=8000, debug=True, reloader=True)
